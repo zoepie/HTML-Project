@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import numpy as np
 from bs4 import BeautifulSoup
 from tqdm import tqdm
@@ -5,6 +7,7 @@ import json
 import torch
 import itertools
 import os, errno
+import sys
 
 
 def mkdir(path):
@@ -47,47 +50,7 @@ def get_all_paths(node):
         [node.data] + path for child in node.children for path in get_all_paths(child)
     ]
 
-def __init__(self, list_IDs, labels):
-    'Initialization'
-    self.labels = labels
-    self.list_IDs = list_IDs
-
-def __len__(self):
-    'Denotes the total number of samples'
-    return len(self.list_IDs)
-
-def __getitem__(self, index):
-    'Generates one sample of data'
-    # Select sample
-    ID = self.list_IDs[index]
-
-    # Load data and get label
-    X = torch.load('data/' + ID + '.pt')
-    y = self.labels[ID]
-
-    return X, y
-# def combinations(iterable, r):
-#     # combinations('ABCD', 2) --> AB AC AD BC BD CD
-#     # combinations(range(4), 3) --> 012 013 023 123
-#     pool = tuple(iterable)
-#     n = len(pool)
-#     if r > n:
-#         return
-#     indices = range(r)
-#     yield tuple(pool[i] for i in indices)
-#     while True:
-#         for i in reversed(range(r)):
-#             if indices[i] != i + n - r:
-#                 break
-#         else:
-#             return
-#         indices[i] += 1
-#         for j in range(i+1, r):
-#             indices[j] = indices[j-1] + 1
-#         yield tuple(pool[i] for i in indices)
-
-
-if __name__ == '__main__':
+def main():
     with open('name2idx.json', 'r') as fp:
         name2idx = json.load(fp)
 
@@ -107,3 +70,7 @@ if __name__ == '__main__':
                 mkdir(file_path)
                 np.save(file_path + '%d.npy' % count, np.array(idx_list))
                 count += 1
+
+
+if __name__ == '__main__':
+    main()

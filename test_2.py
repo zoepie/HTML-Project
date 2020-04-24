@@ -1,5 +1,6 @@
 import re
 from bs4 import BeautifulSoup, NavigableString
+import numpy as np
 from urllib.request import Request, urlopen
 import itertools
 #
@@ -65,9 +66,9 @@ if __name__ == '__main__':
     # # c = [(x, y) for x in a for y in b]
     # # c = [list(zip(x, b)) for x in itertools.permutations(a,len(b))]
     # print(c)
-    root = ClassNode('root')
-    soup = read_file("dataset/train2/72.txt")
-    print(soup)
+    # root = ClassNode('root')
+    # soup = read_file("dataset/train2/72.txt")
+    # print(soup)
     # root = ClassNode('root')
     # get_all_paths(root)
     # find_child(read_file('dataset/train2/test.txt').body, root)
@@ -80,4 +81,6 @@ if __name__ == '__main__':
     # with open('test.txt', 'r') as f:
     #     if f.read()[15] == '\n':
     #         print('f.read()[15]')
+    test = np.load("dataset/tmp/0/10.npy")
+    print(test)
 

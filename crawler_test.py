@@ -1,4 +1,6 @@
-import re
+#!/usr/bin/python
+
+import sys
 from bs4 import BeautifulSoup, NavigableString
 from urllib.request import Request, urlopen
 
@@ -18,12 +20,19 @@ if __name__ == "__main__":
 
             html = urlopen(Request(url, headers={'User-Agent': 'Mozilla/5.0'}))
             soup = BeautifulSoup(html, "html.parser")
-            dir_name = 'dataset/test/' + str(counter) + '.html'
+            dir_name = 'dataset/test/' + str(counter) + '.txt'
             save_file(dir_name, str(soup))
             counter += 1
             for element in soup.find_all("a", href=True):
-                if element["href"] not in visited_urls:
-                    unvisited_urls.add(element["href"])
+                # for link in soup.find_all('img',id = False):
+                # try:
+
+                if element["href"] not in visited_urls :
+                        unvisited_urls.add(element["href"])
+
+                # except error.HTTPError:
+                #     continue
+
             visited_urls.add(url)
         except ValueError:
             continue

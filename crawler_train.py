@@ -1,4 +1,6 @@
-import re
+#!/usr/bin/python
+
+import sys
 from bs4 import BeautifulSoup, NavigableString
 from urllib.request import Request, urlopen
 
@@ -6,30 +8,6 @@ from urllib.request import Request, urlopen
 def save_file(dir_name, data):
     with open(dir_name, 'rb') as f:
         f.write(data)
-
-
-# def replace_tag(soup_body):
-#     for tag_a in soup_body.find_all():
-#         if tag_a.string:
-#             tag_a.string = 'replaced_string'
-#     for tag_a in soup_body.find_all('p'):
-#         if tag_a.string:
-#             tag_a.string = 'replaced_string'
-#     return soup_body
-
-# def replace_text(soup_body):
-#     soup_text = str(soup_body)
-#     for string in soup_body.strings:
-#         if str(string) != '\n':
-#             soup_text = soup_text.replace(str(string), 'replaced_string')
-#     return soup_text
-
-# def replace_string(node):
-#     for i in node.children:
-#         if isinstance(i, NavigableString):
-#             text.append(str(i))
-#         else:
-#             replace_string(i)
 
 
 if __name__ == "__main__":

@@ -74,3 +74,4 @@ fabric.properties
 .idea
 dataset
 __pycache__
+*.pt
