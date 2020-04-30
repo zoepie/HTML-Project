@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
+import errno
+import itertools
+import json
+import os
+
 import numpy as np
 from bs4 import BeautifulSoup
 from tqdm import tqdm
-import json
-import torch
-import itertools
-import os, errno
-import sys
 
 
 def mkdir(path):
@@ -50,14 +50,15 @@ def get_all_paths(node):
         [node.data] + path for child in node.children for path in get_all_paths(child)
     ]
 
+
 def main():
     with open('name2idx.json', 'r') as fp:
         name2idx = json.load(fp)
 
-    for i in tqdm(range(192)):
-        print('dataset/train2/%d.txt' % i)
+    for i in range(191):
+        print('dataset/train/%d.txt' % i)
         root = ClassNode('root')
-        body = read_file('dataset/train2/%d.txt' % i).body
+        body = read_file('dataset/train/%d.txt' % i).body
         if not body:
             continue
         find_child(body, root)
@@ -65,8 +66,8 @@ def main():
         count = 0
         for j in range(len(path_list)):
             for k in itertools.product(*path_list[j][1:]):
-                idx_list = [792] + [name2idx[m] for m in k]
-                file_path = 'dataset/tmp/%d/' % (count // 1000)
+                idx_list = [name2idx[m] for m in k]
+                file_path = 'dataset/train/%d/' % (count // 1000)
                 mkdir(file_path)
                 np.save(file_path + '%d.npy' % count, np.array(idx_list))
                 count += 1

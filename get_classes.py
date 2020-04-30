@@ -32,4 +32,5 @@ if __name__ == '__main__':
                 continue
 
     with open("classes.txt", 'w') as f:
-        f.write(str(classes))
+        for item in classes:
+            f.write("%s\n" % item)
