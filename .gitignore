@@ -73,7 +73,6 @@ fabric.properties
 
 .idea
 *.png
-dataset/**/*.txt
-dataset/**/*.npy
+dataset/train
 __pycache__
 *.pt

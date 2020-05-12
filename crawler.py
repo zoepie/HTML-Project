@@ -36,12 +36,12 @@ def crawl_test():
             f.write(soup.prettify().encode('utf8'))
         counter += 1
         for element in soup.find_all("a", href=True):
-            if element["href"].startswith("https://mdbootstrap.com/products/jquery-ui-kit/") \
+            if element["href"].startswith("https://mdbootstrap.com/") \
                     and element["href"] not in visited_urls:
                 unvisited_urls.add(element["href"])
         visited_urls.add(url)
 
 
 if __name__ == "__main__":
-    crawl_train()
+    # crawl_train()
     crawl_test()

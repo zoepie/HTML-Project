@@ -123,17 +123,17 @@ def test(checkpoint):
     model = RNN(512, 1024, 794, 2).to(device)
     model.load_state_dict(torch.load('model_epoch_%d.pt' % checkpoint))
     model.eval()
-    for i in range(3):
+    for i in range(50):
         test_list = test_loader(i)
         if test_list:
             for t in test_list:
                 output = model.forward(t[:, :-1].to(device))
                 prob = torch.softmax(output, dim=-1).squeeze(dim=0)
                 for idx, token in enumerate(t[0, 1:]):
-                    if prob[idx, token.item()].item() * 100 > 1:
+                    if prob[idx, token.item()].item() * 100 < 0.14:
                         print('Parent: %s, \t\t\tChild: %s, \t\t\tProb: %f' % (
                             idx2name[str(t[0, idx].item())], idx2name[str(token.item())],
-                            prob[idx, token.item()].item() * 100))
+                            prob[idx, token.item()].item() * 100), '\t\tMay not a pair')
 
 
 def train():

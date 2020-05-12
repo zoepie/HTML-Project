@@ -37,7 +37,6 @@ def freq_calculation():
                                     continue
                 except KeyError:
                     continue
-
     with open('name2idx.json', 'w') as fp:
         json.dump(name2idx, fp)
     with open('idx2name.json', 'w') as fp:
@@ -72,7 +71,13 @@ def model_test(name2idx, freq_matrix):
 
 if __name__ == '__main__':
     freq_calculation()
+
     with open('name2idx.json', 'r') as f:
         n2i = json.load(f)
     fm = np.load('freq_matrix.npy')
-    model_test(n2i, fm)
+    # model_test(n2i, fm)
+    # i = n2i["pt-4"]
+    # j = n2i['container-fluid']
+    # print(fm[i][j])
+
+
